@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template
-import sqlite3
+import MySQLdb
 app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
@@ -8,7 +8,13 @@ def index():
     if request.method == 'GET':
         return render_template('index.html')
     else:
-        conn = sqlite3.connect('database.db')
+        conn = MySQLdb.connect(
+            user = 'username',
+            passwd = 'password',
+            host = 'MySQL Server Hostname',
+            db = 'Database'
+        )
+
         c = conn.cursor()
 
         form_user = request.form['input_user']
@@ -26,6 +32,7 @@ def index():
         c.execute("INSERT INTO bans (username, reason, dates, evidence) VALUES (?, ?, ?, ?)", (username, reason, dates, evi))
 
         conn.commit()
+        c. close()
         conn.close()
 
         return render_template('index.html',form_user=form_user)
