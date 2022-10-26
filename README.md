@@ -1,4 +1,4 @@
 # python_DB
-html上で入力したテキストを、python経由でSQLiteデータベースに保存します。
+html上で入力したテキストを、python経由でMySQLデータベースに保存します。
 
 minecraftのサーバー運営用に、BANしたユーザーをデータベースで保存しておくために作りました。
